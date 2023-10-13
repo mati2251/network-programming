@@ -5,7 +5,7 @@
 #define BUFFER_SIZE 100
 
 int main(int argc, char *argv[]) {
-    unsigned short port_number = htons(1313);
+    unsigned short port_number = htons(3000);
     sockaddr_in address{
             .sin_family = AF_INET,
             .sin_port = port_number,
@@ -22,11 +22,7 @@ int main(int argc, char *argv[]) {
             sizeof(address)
     );
     if (err == -1) {
-        perror("Error connecting to server");
-        return 1;
-    }
-    if (argc < 2) {
-        std::cout << "Usage: " << argv[0] << " <input file>" << std::endl;
+        perror("Error connecting to server-tcp");
         return 1;
     }
     char buffer[BUFFER_SIZE];
