@@ -37,8 +37,8 @@ int main(int argc, char **argv)
     while (1)
     {
         int i = poll(fds, 2, -1);
-        if (i == -1)
-            error(1, errno, "poll failed");
+        if (fds[1].revents & POLLHUP)
+            break;
         if (fds[0].revents & POLLIN)
         {
             char buf[1024];
@@ -59,4 +59,6 @@ int main(int argc, char **argv)
                 error(1, errno, "write failed");
         }
     }
+    close(sock);
+    return 0;
 }
