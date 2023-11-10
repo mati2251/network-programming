@@ -9,10 +9,8 @@
 
 int main(int argc, char **argv)
 {
-    // if (argc != 3)
-    //     error(1, 0, "Need 2 args");
-    argv[1] = "127.0.0.1";
-    argv[2] = "3000";
+    if (argc != 3)
+        error(1, 0, "Need 2 args");
     addrinfo *resolved, hints = {.ai_flags = 0, .ai_family = AF_INET, .ai_socktype = SOCK_STREAM};
     int res = getaddrinfo(argv[1], argv[2], &hints, &resolved);
     if (res || !resolved)

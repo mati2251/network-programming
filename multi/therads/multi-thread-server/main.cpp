@@ -15,12 +15,12 @@ bool ready = false;
 
 int main(int argc, char **argv)
 {
-    // if (argc != 2)
-    //     error(1, 0, "Usage: %s <port>", argv[0]);
+    if (argc != 2)
+        error(1, 0, "Usage: %s <port>", argv[0]);
 
     sockaddr_in addr = {
         .sin_family = AF_INET,
-        .sin_port = htons(3000),
+        .sin_port = htons(atoi(argv[1])),
         .sin_addr = {INADDR_ANY}};
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     const int one = 1;
